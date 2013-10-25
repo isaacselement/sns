@@ -1,0 +1,78 @@
+@CHARSET "UTF-8";
+
+html,body,ul,li {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+/*导航栏  */
+.navbar {
+	height: 35px;
+	width: 100%;
+	background: url("/sns/images/main/global_nav_bg.png") repeat-x;
+	top: 0;
+	left: 0;
+	position: fixed;
+}
+
+.navbar .container {
+	width: 80%;
+	margin: 0px auto;
+}
+
+.navbar .container .content {
+	width: 950px;
+	margin: 0px auto;
+}
+
+.navbar .container .content form {
+	float: left;
+	margin-left: 50px;
+}
+
+.navbar .container .content .nav_search_btn:HOVER {
+	opacity: 0.5;
+}
+
+.navbar .container .content .left {
+	float: left;
+	margin-left: 20px;
+}
+
+.navbar .container .content .right {
+	float: right;
+	margin-right: 20px;
+}
+
+.navbar .container .content ul li {
+	float: left;
+	margin-left: 40px;
+	margin-top: 5px;
+}
+
+.navbar .container .content ul li a {
+	color: #EEEEEE;
+	font-weight: bold;
+	font: 16px 'Helvetica Neue', Helvetica, Arial, Sans-serif;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.navbar .container .content ul li a:HOVER {
+	color: #FFFFFF;
+	text-shadow: 0 5px 3px rgba(0, 0, 0, 1);
+	text-decoration: none;
+}
+
+/* 导航栏下的内容*/
+.body {
+	margin-top: 36px;
+}

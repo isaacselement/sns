@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="gbk" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="utf-8" /> <!--设置struts字符集为gbk -->
+	<package name="weibo" extends="struts-default" namespace="/">
+		<!--注册 -->
+		<action name="register" class="com.weibo.action.RegisterAction"
+			method="execute">
+			<result name="success" type="chain">modify</result>
+			<result name="registerFail">/register.jsp</result>
+			<result name="userExit">/register.jsp</result>
+			<result name="passwordRepeat">/register.jsp</result>
+			<result name="fail">/register.jsp</result>
+		</action>
+
+		<!-- 登录 -->
+		<action name="login" class="com.weibo.action.LoginAction"
+			method="execute">
+			<result name="success" type="chain">main</result>
+			<result name="userOrPasswordError">/index.jsp</result>
+			<result name="userNONE">/index.jsp</result>
+		</action>
+
+		<!-- 退出 -->
+		<action name="logout" class="com.weibo.action.MainAction"
+			method="logout">
+			<result name="success">/index.jsp</result>
+		</action>
+
+		<!-- 我的首页 -->
+		<action name="main" class="com.weibo.action.MainAction" method="execute">
+			<result name="success">/main.jsp</result>
+			<result name="userNotExit" type="redirect">/login.jsp</result>
+		</action>
+
+		<!-- 我的微博 -->
+		<action name="profile" class="com.weibo.action.ProfileAction"
+			method="execute">
+			<result name="success">/profile.jsp</result>
+			<result name="fanProfileSuccess">/fanProfile.jsp</result>
+		</action>
+
+		<!-- 帐号设置 -->
+		<action name="modify" class="com.weibo.action.ModifyAction"
+			method="execute">
+			<result name="success">/modify.jsp</result>
+		</action>
+
+		<action name="modify_submit" class="com.weibo.action.ModifyAction"
+			method="userModify">
+			<result name="success">/upload.jsp</result>
+		</action>
+
+		<!-- 我的粉丝页面 -->
+		<action name="follow" class="com.weibo.action.MainAction"
+			method="getFollows">
+			<result name="success">/follow.jsp</result>
+		</action>
+
+		<!-- 我的关注（好友）页面 -->
+		<action name="following" class="com.weibo.action.MainAction"
+			method="getMyFollowings">
+			<result name="success">/following.jsp</result>
+		</action>
+
+		<!-- 上传图片 -->
+		<action name="uplaod" class="com.weibo.action.UploadAction"
+			method="execute">
+			<result name="success">/upload.jsp</result>
+		</action>
+
+		<!-- 发表微博附带的图片 -->
+		<action name="uploadAction" class="com.weibo.action.UploadAction"
+			method="upload">
+			<result name="success">/upload.jsp</result>
+		</action>
+
+		<!-- 搜索用户 -->
+		<action name="searchUser" class="com.weibo.action.MainAction"
+			method="getEchoUser">
+			<result name="success">/allUser.jsp</result>
+		</action>
+
+		<!-- 得到用户的新消息 -->
+		<action name="showComments" class="com.weibo.action.TipsAction"
+			method="showComments">
+			<result name="success">/newMessage.jsp</result>
+		</action>
+
+	</package>
+
+
+
+
+	<!-- Json方法 -->
+	<package name="json" namespace="/json" extends="json-default">
+		<action name="jsonSaveMessage" class="com.weibo.action.MainAction"
+			method="saveMessage">
+			<result type="json"></result>
+		</action>
+
+		<action name="showMessages" class="com.weibo.action.LoginAction"
+			method="loadMessages">
+			<result type="json"></result>
+		</action>
+
+		<action name="showTopFans" class="com.weibo.action.LoginAction"
+			method="loadTopFans">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonAddCommets" class="com.weibo.action.ProfileAction"
+			method="loadComments">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonAddCommentsByForwardid" class="com.weibo.action.ProfileAction"
+			method="loadCommentsByForwardid">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonSaveComment" class="com.weibo.action.ProfileAction"
+			method="saveCommentToMessage">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonSaveCommentByForwardid" class="com.weibo.action.ProfileAction"
+			method="saveCommentToForward">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonDeleteMessage" class="com.weibo.action.ProfileAction"
+			method="deleteMessage">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonDeleteForward" class="com.weibo.action.ProfileAction"
+			method="deleteForward">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonSaveForward" class="com.weibo.action.ProfileAction"
+			method="saveForwardToMessage">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonSaveForwardToForward" class="com.weibo.action.ProfileAction"
+			method="saveForwardToMessage">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonAddFollowing" class="com.weibo.action.MainAction"
+			method="addFollowing">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonTips" class="com.weibo.action.TipsAction"
+			method="getTips">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonSaveCollection" class="com.weibo.action.CollectionAction"
+			method="saveCollection">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonDeleteCollectMess" class="com.weibo.action.CollectionAction"
+			method="deleteCollectMess">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonSaveForwardCollection" class="com.weibo.action.CollectionAction"
+			method="saveForwardCollection">
+			<result type="json"></result>
+		</action>
+
+		<action name="jsonDeleteCollectForw" class="com.weibo.action.CollectionAction"
+			method="deleteCollectForw">
+			<result type="json"></result>
+		</action>
+
+		<!-- 回复评论 -->
+		<action name="jsonReplyCommet" class="com.weibo.action.TipsAction"
+			method="replyComment">
+			<result type="json"></result>
+		</action>
+	</package>
+
+
+</struts>
